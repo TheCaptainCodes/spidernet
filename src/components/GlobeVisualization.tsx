@@ -26,24 +26,23 @@ const GlobeVisualization = () => {
     let animationFrame: number;
     let time = 0;
 
-    // Network nodes data
+    // Network nodes with specific roles
     const nodes = [
-      { x: 0.2, y: 0.3, active: true, id: 'node1' },
-      { x: 0.7, y: 0.2, active: true, id: 'node2' },
-      { x: 0.5, y: 0.6, active: false, id: 'node3' },
-      { x: 0.3, y: 0.8, active: true, id: 'node4' },
-      { x: 0.8, y: 0.7, active: true, id: 'node5' },
-      { x: 0.1, y: 0.5, active: false, id: 'node6' },
+      { x: 0.15, y: 0.3, type: 'mobile', hasInternet: false, id: 'mobile1', label: 'Mobile (SOS)' },
+      { x: 0.25, y: 0.35, type: 'spidernet', hasInternet: false, id: 'spider1', label: 'SpiderNet Node' },
+      { x: 0.45, y: 0.25, type: 'spidernet', hasInternet: false, id: 'spider2', label: 'SpiderNet Node' },
+      { x: 0.65, y: 0.4, type: 'spidernet', hasInternet: false, id: 'spider3', label: 'SpiderNet Node' },
+      { x: 0.8, y: 0.35, type: 'mobile', hasInternet: true, id: 'mobile2', label: 'Mobile (Internet)' },
+      { x: 0.85, y: 0.6, type: 'gateway', hasInternet: true, id: 'gateway1', label: 'Emergency Services' },
     ];
 
-    // Connection paths
-    const connections = [
-      { from: 0, to: 1, active: true },
-      { from: 1, to: 2, active: false },
-      { from: 0, to: 3, active: true },
-      { from: 3, to: 4, active: true },
-      { from: 1, to: 4, active: true },
-      { from: 5, to: 0, active: false },
+    // SOS message path through the network
+    const messagePath = [
+      { from: 0, to: 1 }, // Mobile to first SpiderNet
+      { from: 1, to: 2 }, // SpiderNet to SpiderNet
+      { from: 2, to: 3 }, // SpiderNet to SpiderNet
+      { from: 3, to: 4 }, // SpiderNet to internet-connected mobile
+      { from: 4, to: 5 }, // Mobile to emergency services
     ];
 
     const animate = () => {
@@ -54,106 +53,157 @@ const GlobeVisualization = () => {
       // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Draw globe outline
-      ctx.strokeStyle = 'rgba(0, 191, 255, 0.3)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(width / 2, height / 2, Math.min(width, height) / 3, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Draw grid lines
+      // Draw network coverage area
       ctx.strokeStyle = 'rgba(0, 191, 255, 0.1)';
       ctx.lineWidth = 1;
-      for (let i = 0; i < 8; i++) {
-        const angle = (i / 8) * Math.PI * 2;
-        ctx.beginPath();
-        ctx.moveTo(width / 2, height / 2);
-        ctx.lineTo(
-          width / 2 + Math.cos(angle) * (Math.min(width, height) / 3),
-          height / 2 + Math.sin(angle) * (Math.min(width, height) / 3)
-        );
-        ctx.stroke();
-      }
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, Math.min(width, height) / 2.5, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
 
-      // Draw connections
-      connections.forEach((conn, index) => {
-        const fromNode = nodes[conn.from];
-        const toNode = nodes[conn.to];
+      // Draw all possible connections (mesh network)
+      messagePath.forEach((path, index) => {
+        const fromNode = nodes[path.from];
+        const toNode = nodes[path.to];
         
         const x1 = fromNode.x * width;
         const y1 = fromNode.y * height;
         const x2 = toNode.x * width;
         const y2 = toNode.y * height;
 
-        if (conn.active) {
-          // Animated pulse along connection
-          const pulse = (Math.sin(time * 0.003 + index) + 1) / 2;
-          ctx.strokeStyle = `rgba(0, 191, 255, ${0.3 + pulse * 0.4})`;
-          ctx.lineWidth = 2 + pulse * 2;
-        } else {
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-          ctx.lineWidth = 1;
-        }
-
+        ctx.strokeStyle = 'rgba(0, 191, 255, 0.2)';
+        ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.stroke();
       });
 
+      // Animate SOS message packet along the path
+      const packetSpeed = 0.001;
+      const totalPathTime = messagePath.length;
+      const currentTime = (time * packetSpeed) % totalPathTime;
+      const currentPathIndex = Math.floor(currentTime);
+      const pathProgress = currentTime - currentPathIndex;
+
+      if (currentPathIndex < messagePath.length) {
+        const currentPath = messagePath[currentPathIndex];
+        const fromNode = nodes[currentPath.from];
+        const toNode = nodes[currentPath.to];
+
+        // Animate connection being active
+        const x1 = fromNode.x * width;
+        const y1 = fromNode.y * height;
+        const x2 = toNode.x * width;
+        const y2 = toNode.y * height;
+
+        ctx.strokeStyle = 'rgba(0, 255, 100, 0.8)';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = 'rgba(0, 255, 100, 0.5)';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Draw moving SOS packet
+        const packetX = fromNode.x + (toNode.x - fromNode.x) * pathProgress;
+        const packetY = fromNode.y + (toNode.y - fromNode.y) * pathProgress;
+
+        ctx.fillStyle = '#FF0040';
+        ctx.shadowColor = 'rgba(255, 0, 64, 0.8)';
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(packetX * width, packetY * height, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // SOS text following the packet
+        ctx.fillStyle = '#FF0040';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('SOS', packetX * width, packetY * height - 15);
+      }
+
       // Draw nodes
       nodes.forEach((node, index) => {
         const x = node.x * width;
         const y = node.y * height;
-        const radius = node.active ? 8 : 4;
 
-        // Node glow
-        if (node.active) {
-          const pulse = (Math.sin(time * 0.005 + index) + 1) / 2;
-          ctx.shadowColor = 'rgba(0, 191, 255, 0.8)';
-          ctx.shadowBlur = 20 + pulse * 10;
-        } else {
-          ctx.shadowColor = 'transparent';
-          ctx.shadowBlur = 0;
+        // Node appearance based on type
+        let nodeColor, nodeSize, glowColor;
+        switch (node.type) {
+          case 'mobile':
+            nodeColor = node.hasInternet ? '#00FF64' : '#FFD700';
+            nodeSize = 8;
+            glowColor = node.hasInternet ? 'rgba(0, 255, 100, 0.6)' : 'rgba(255, 215, 0, 0.6)';
+            break;
+          case 'spidernet':
+            nodeColor = '#00BFFF';
+            nodeSize = 12;
+            glowColor = 'rgba(0, 191, 255, 0.6)';
+            break;
+          case 'gateway':
+            nodeColor = '#FF6B6B';
+            nodeSize = 14;
+            glowColor = 'rgba(255, 107, 107, 0.6)';
+            break;
+          default:
+            nodeColor = '#666';
+            nodeSize = 6;
+            glowColor = 'rgba(102, 102, 102, 0.6)';
         }
 
-        // Node circle
-        ctx.fillStyle = node.active ? '#00BFFF' : '#333';
+        // Node glow effect
+        const pulse = (Math.sin(time * 0.003 + index) + 1) / 2;
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = 15 + pulse * 10;
+
+        // Draw node
+        ctx.fillStyle = nodeColor;
         ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.arc(x, y, nodeSize, 0, Math.PI * 2);
         ctx.fill();
 
         // Reset shadow
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
 
-        // SOS indicator for active nodes
-        if (node.active && index === 0) {
-          const sosAlpha = (Math.sin(time * 0.01) + 1) / 2;
-          ctx.fillStyle = `rgba(255, 0, 0, ${sosAlpha})`;
-          ctx.font = '12px monospace';
-          ctx.textAlign = 'center';
-          ctx.fillText('SOS', x, y - 15);
+        // Node type indicator
+        ctx.fillStyle = 'white';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        let icon = '';
+        switch (node.type) {
+          case 'mobile':
+            icon = node.hasInternet ? '📱✅' : '📱';
+            break;
+          case 'spidernet':
+            icon = '🕸️';
+            break;
+          case 'gateway':
+            icon = '🚨';
+            break;
+        }
+        ctx.fillText(icon, x, y + 25);
+
+        // Special indicator for SOS origin
+        if (index === 0) {
+          const sosAlpha = (Math.sin(time * 0.008) + 1) / 2;
+          ctx.fillStyle = `rgba(255, 0, 64, ${sosAlpha})`;
+          ctx.font = 'bold 14px monospace';
+          ctx.fillText('SOS!', x, y - 20);
+        }
+
+        // Internet connectivity indicator
+        if (node.hasInternet) {
+          ctx.fillStyle = '#00FF64';
+          ctx.font = '8px monospace';
+          ctx.fillText('INET', x, y - 25);
         }
       });
-
-      // Message packet animation
-      const packetTime = (time * 0.002) % 1;
-      if (connections[0].active) {
-        const fromNode = nodes[0];
-        const toNode = nodes[1];
-        const packetX = fromNode.x + (toNode.x - fromNode.x) * packetTime;
-        const packetY = fromNode.y + (toNode.y - fromNode.y) * packetTime;
-
-        ctx.fillStyle = '#00FF64';
-        ctx.shadowColor = 'rgba(0, 255, 100, 0.8)';
-        ctx.shadowBlur = 15;
-        ctx.beginPath();
-        ctx.arc(packetX * width, packetY * height, 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowColor = 'transparent';
-        ctx.shadowBlur = 0;
-      }
 
       time += 16; // Approximately 60fps
       animationFrame = requestAnimationFrame(animate);
@@ -178,15 +228,33 @@ const GlobeVisualization = () => {
       {/* Overlay Labels */}
       <div className="absolute top-4 left-4 glass px-3 py-2 rounded-lg">
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-blue-500 rounded-full animate-ping" />
-          <span className="text-sm font-medium">Live Network</span>
+          <div className="w-3 h-3 bg-red-500 rounded-full animate-ping" />
+          <span className="text-sm font-medium">SOS Signal Active</span>
         </div>
       </div>
       
       <div className="absolute bottom-4 right-4 glass px-3 py-2 rounded-lg">
         <div className="text-sm">
-          <div className="text-green-400 font-mono">MSG_RELAY_ACTIVE</div>
-          <div className="text-muted-foreground">6 nodes online</div>
+          <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
+          <div className="text-muted-foreground">Signal → Mesh → Internet</div>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="absolute bottom-4 left-4 glass px-3 py-2 rounded-lg">
+        <div className="text-xs space-y-1">
+          <div className="flex items-center space-x-2">
+            <span>📱</span>
+            <span>Mobile Device</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span>🕸️</span>
+            <span>SpiderNet Node</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span>🚨</span>
+            <span>Emergency Services</span>
+          </div>
         </div>
       </div>
     </div>
