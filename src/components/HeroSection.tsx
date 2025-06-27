@@ -22,7 +22,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
+    <section className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -34,13 +34,13 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             {/* SOS Badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full glass glow-blue mb-8 animate-pulse-glow">
+            <div className="inline-flex items-center px-4 py-2 rounded-full glass glow-blue mb-6 animate-pulse-glow">
               <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-ping" />
               <span className="text-sm font-medium">Emergency Network Active</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               <span className="gradient-text glow-text-blue">
                 {currentText}
                 <span className="animate-ping">|</span>
@@ -48,7 +48,7 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
               Revolutionary offline emergency mesh network powered by solar hardware. 
               Connecting disaster-hit communities when it matters most.
             </p>

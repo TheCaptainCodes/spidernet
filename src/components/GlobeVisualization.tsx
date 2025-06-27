@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Smartphone, Wifi, Radio, AlertTriangle } from 'lucide-react';
 
@@ -44,7 +43,7 @@ const GlobeVisualization = () => {
       
       // Internet-connected device and emergency services
       { x: 0.8, y: 0.35, type: 'mobile', hasInternet: true, id: 'mobile2', label: 'Mobile (Internet)' },
-      { x: 0.85, y: 0.15, type: 'gateway', hasInternet: true, id: 'gateway1', label: 'Emergency Services' },
+      { x: 0.75, y: 0.15, type: 'gateway', hasInternet: true, id: 'gateway1', label: 'Emergency Services' },
     ];
 
     // SOS message path through the spider web network
@@ -298,14 +297,14 @@ const GlobeVisualization = () => {
       />
       
       {/* Overlay Labels */}
-      <div className="absolute top-4 left-4 glass px-3 py-2 rounded-lg">
+      <div className="absolute top-4 left-4 glass px-3 py-2 rounded-lg z-10">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-red-500 rounded-full animate-ping" />
           <span className="text-sm font-medium">SOS Signal Active</span>
         </div>
       </div>
       
-      <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg">
+      <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-sm">
           <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
           <div className="text-muted-foreground">Device → Mesh → Internet</div>
@@ -313,7 +312,7 @@ const GlobeVisualization = () => {
       </div>
 
       {/* Legend */}
-      <div className="absolute bottom-4 left-4 glass px-3 py-2 rounded-lg">
+      <div className="absolute bottom-4 left-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-xs space-y-1">
           <div className="flex items-center space-x-2">
             <span>📱</span>
@@ -335,7 +334,7 @@ const GlobeVisualization = () => {
       </div>
 
       {/* Speed indicator */}
-      <div className="absolute bottom-4 right-4 glass px-3 py-2 rounded-lg">
+      <div className="absolute bottom-4 right-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-xs text-muted-foreground">
           <div className="text-green-400 font-mono">MESH_SPEED: 4X</div>
           <div>Web Pattern Active</div>
