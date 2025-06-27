@@ -4,6 +4,12 @@ import { Smartphone, Wifi, Radio, AlertTriangle } from 'lucide-react';
 const GlobeVisualization = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // Determine mesh speed multiplier for display
+  let meshSpeed = 2;
+  if (typeof window !== 'undefined' && navigator.userAgent.toLowerCase().includes('firefox')) {
+    meshSpeed = 4;
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -145,7 +151,10 @@ const GlobeVisualization = () => {
       });
 
       // Animate SOS message packet along the path (much faster)
-      const packetSpeed = 0.002; // Increased from 0.001 to make it 4x faster
+      let packetSpeed = 0.002; // Default: Chrome-based (2x)
+      if (navigator.userAgent.toLowerCase().includes('firefox')) {
+        packetSpeed = 0.004; // 4x for Firefox
+      }
       const totalPathTime = messagePath.length;
       const currentTime = (time * packetSpeed) % totalPathTime;
       const currentPathIndex = Math.floor(currentTime);
@@ -307,12 +316,14 @@ const GlobeVisualization = () => {
       </div>
       
       {/* Fixed Emergency Relay Button - Positioned Better */}
-      <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg z-10">
-        <div className="text-sm">
-          <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
-          <div className="text-muted-foreground">Device → Mesh → Internet</div>
+      {typeof window !== 'undefined' && !/Mobi|Android/i.test(navigator.userAgent) && (
+        <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg z-10">
+          <div className="text-sm">
+            <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
+            <div className="text-muted-foreground">Device → Mesh → Internet</div>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Legend */}
       <div className="absolute bottom-4 left-4 glass px-3 py-2 rounded-lg z-10">
@@ -339,7 +350,7 @@ const GlobeVisualization = () => {
       {/* Speed indicator */}
       <div className="absolute bottom-4 right-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-xs text-muted-foreground">
-          <div className="text-green-400 font-mono">MESH_SPEED: 4X</div>
+          <div className="text-green-400 font-mono">MESH_SPEED: {meshSpeed}X</div>
           <div>Web Pattern Active</div>
         </div>
       </div>
