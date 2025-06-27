@@ -145,7 +145,7 @@ const GlobeVisualization = () => {
       });
 
       // Animate SOS message packet along the path (much faster)
-      const packetSpeed = 0.004; // Increased from 0.001 to make it 4x faster
+      const packetSpeed = 0.002; // Increased from 0.001 to make it 4x faster
       const totalPathTime = messagePath.length;
       const currentTime = (time * packetSpeed) % totalPathTime;
       const currentPathIndex = Math.floor(currentTime);

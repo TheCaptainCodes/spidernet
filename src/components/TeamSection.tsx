@@ -2,20 +2,20 @@
 const TeamSection = () => {
   const team = [
     {
-      name: 'Md. Fatin Hasnat',
-      role: 'Software & Network',
-      avatar: '👨‍💻',
-      description: 'Full-stack developer specializing in mesh networking protocols and mobile app development.',
-      skills: ['React Native', 'ESP32', 'LoRa Protocol', 'Network Architecture'],
-      github: '#',
-      linkedin: '#'
-    },
-    {
       name: 'Mahmudul Hasan',
       role: 'Hardware Engineer',
       avatar: '⚡',
       description: 'Electronics engineer focused on low-power embedded systems and solar energy integration.',
       skills: ['PCB Design', 'Embedded C++', 'Solar Systems', 'RF Engineering'],
+      github: '#',
+      linkedin: '#'
+    },
+    {
+      name: 'Md. Fatin Hasnat',
+      role: 'Software & Network',
+      avatar: '👨‍💻',
+      description: 'Full-stack developer specializing in mesh networking protocols and mobile app development.',
+      skills: ['React Native', 'ESP32', 'LoRa Protocol', 'Network Architecture'],
       github: '#',
       linkedin: '#'
     },
