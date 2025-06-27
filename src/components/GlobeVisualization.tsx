@@ -48,8 +48,8 @@ const GlobeVisualization = () => {
       { x: 0.45, y: 0.7, type: 'spidernet', hasInternet: false, id: 'spider6', label: 'SpiderNet Node' },
       
       // Internet-connected device and emergency services
-      { x: 0.8, y: 0.35, type: 'mobile', hasInternet: true, id: 'mobile2', label: 'Mobile (Internet)' },
-      { x: 0.75, y: 0.15, type: 'gateway', hasInternet: true, id: 'gateway1', label: 'Emergency Services' },
+      { x: 0.77, y: 0.47, type: 'mobile', hasInternet: true, id: 'mobile2', label: 'Mobile (Internet)' },
+      { x: 0.85, y: 0.27  , type: 'gateway', hasInternet: true, id: 'gateway1', label: 'Emergency Services' },
     ];
 
     // SOS message path through the spider web network
