@@ -53,99 +53,136 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Enhanced Message Flow Visualization */}
+          {/* Right Content - Enhanced Real-World Message Flow */}
           <div className="scroll-fade-in">
             <div className="glass rounded-2xl p-8 glow-green relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-4 left-4 w-20 h-20 border border-blue-400 rounded-lg rotate-12" />
-                <div className="absolute bottom-4 right-4 w-16 h-16 border border-green-400 rounded-full" />
-                <div className="absolute top-1/2 right-8 w-12 h-12 border border-purple-400 rounded-lg rotate-45" />
+              {/* Meaningful Background Elements */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-6 left-6 text-6xl">🏠</div>
+                <div className="absolute bottom-6 right-6 text-6xl">🏥</div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-8xl">🕸️</div>
               </div>
 
-              <div className="relative h-80">
-                {/* Message Flow Steps */}
-                <div className="absolute top-4 left-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-red-500 glow-blue flex items-center justify-center">
-                      <span className="text-xs">📱</span>
+              <div className="relative">
+                <h3 className="text-xl font-bold mb-6 text-center gradient-text">
+                  Real Emergency Scenario
+                </h3>
+
+                {/* Emergency Flow Visualization */}
+                <div className="space-y-6">
+                  {/* Step 1: Disaster Strikes */}
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-white/5 border border-red-500/20">
+                    <div className="w-12 h-12 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center">
+                      <span className="text-lg">🚨</span>
                     </div>
-                    <span className="text-sm font-medium">1. Send SOS</span>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-red-400">Disaster Strikes</h4>
+                      <p className="text-sm text-muted-foreground">Cell towers down, internet out</p>
+                    </div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-red-500 to-transparent rounded animate-pulse" />
                   </div>
-                  <div className="text-xs text-muted-foreground">User sends emergency message</div>
+
+                  {/* Step 2: SpiderNet Activates */}
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-white/5 border border-blue-500/20">
+                    <div className="w-12 h-12 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center">
+                      <span className="text-lg">🕸️</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-blue-400">SpiderNet Mesh Activates</h4>
+                      <p className="text-sm text-muted-foreground">Solar nodes create emergency network</p>
+                    </div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded animate-pulse" style={{ animationDelay: '0.5s' }} />
+                  </div>
+
+                  {/* Step 3: Message Routing */}
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-white/5 border border-green-500/20">
+                    <div className="w-12 h-12 rounded-full bg-green-500/20 border-2 border-green-500 flex items-center justify-center">
+                      <span className="text-lg">📱</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-green-400">SOS Message Routes</h4>
+                      <p className="text-sm text-muted-foreground">Hops through mesh to reach help</p>
+                    </div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-green-500 to-transparent rounded animate-pulse" style={{ animationDelay: '1s' }} />
+                  </div>
+
+                  {/* Step 4: Help Arrives */}
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-white/5 border border-purple-500/20">
+                    <div className="w-12 h-12 rounded-full bg-purple-500/20 border-2 border-purple-500 flex items-center justify-center">
+                      <span className="text-lg">🚁</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-purple-400">Emergency Response</h4>
+                      <p className="text-sm text-muted-foreground">Rescue teams dispatched with exact location</p>
+                    </div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded animate-pulse" style={{ animationDelay: '1.5s' }} />
+                  </div>
                 </div>
 
-                <div className="absolute top-4 right-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-500 glow-blue flex items-center justify-center">
-                      <span className="text-xs">🕸️</span>
-                    </div>
-                    <span className="text-sm font-medium">2. Mesh Relay</span>
-                  </div>
-                  <div className="text-xs text-muted-foreground">SpiderNet nodes forward message</div>
-                </div>
-
-                <div className="absolute bottom-4 left-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-green-500 glow-green flex items-center justify-center">
-                      <span className="text-xs">📡</span>
-                    </div>
-                    <span className="text-sm font-medium">3. Internet Gateway</span>
-                  </div>
-                  <div className="text-xs text-muted-foreground">Message reaches connected device</div>
-                </div>
-
-                <div className="absolute bottom-4 right-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-purple-500 glow-green flex items-center justify-center">
-                      <span className="text-xs">🚨</span>
-                    </div>
-                    <span className="text-sm font-medium">4. Emergency Response</span>
-                  </div>
-                  <div className="text-xs text-muted-foreground">Help is dispatched</div>
-                </div>
-
-                {/* Animated Message Path */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                  <defs>
-                    <linearGradient id="messageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FF0040" stopOpacity="0.8" />
-                      <stop offset="50%" stopColor="#00BFFF" stopOpacity="0.6" />
-                      <stop offset="100%" stopColor="#00FF64" stopOpacity="0.4" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Message flow path */}
-                  <path
-                    d="M 40 40 Q 200 100 360 40 Q 300 200 360 280 Q 200 240 40 280"
-                    fill="none"
-                    stroke="url(#messageGradient)"
-                    strokeWidth="3"
-                    strokeDasharray="10,5"
-                    className="animate-pulse"
-                  />
-                  
-                  {/* Animated dots along the path */}
-                  <circle r="4" fill="#FF0040" className="animate-pulse">
-                    <animateMotion dur="4s" repeatCount="indefinite">
-                      <mpath href="#messagePath" />
-                    </animateMotion>
-                  </circle>
-                </svg>
-
-                {/* Central mesh visualization */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="relative">
-                    <div className="w-20 h-20 rounded-full glass-strong border-2 border-blue-400 flex items-center justify-center glow-blue">
-                      <div className="text-center">
-                        <div className="text-2xl mb-1">🕸️</div>
-                        <div className="text-xs font-medium">Mesh</div>
+                {/* Central Network Visualization */}
+                <div className="mt-8 relative">
+                  <div className="flex justify-center items-center space-x-8">
+                    {/* Home */}
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-full glass-strong border-2 border-blue-400 flex items-center justify-center glow-blue mb-2">
+                        <span className="text-2xl">🏠</span>
                       </div>
+                      <span className="text-xs">Home</span>
                     </div>
+
+                    {/* SpiderNet Hub */}
+                    <div className="text-center relative">
+                      <div className="w-20 h-20 rounded-full glass-strong border-2 border-green-400 flex items-center justify-center glow-green mb-2">
+                        <span className="text-3xl">🕸️</span>
+                      </div>
+                      <span className="text-xs font-semibold">SpiderNet</span>
+                      {/* Pulsing rings */}
+                      <div className="absolute inset-0 border-2 border-green-400 rounded-full animate-ping opacity-20" />
+                      <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" style={{ animationDelay: '1s' }} />
+                    </div>
+
+                    {/* Emergency Services */}
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-full glass-strong border-2 border-red-400 flex items-center justify-center glow-blue mb-2">
+                        <span className="text-2xl">🚨</span>
+                      </div>
+                      <span className="text-xs">Emergency</span>
+                    </div>
+                  </div>
+
+                  {/* Connection Lines */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                    <defs>
+                      <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.6" />
+                        <stop offset="50%" stopColor="#10B981" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#EF4444" stopOpacity="0.6" />
+                      </linearGradient>
+                    </defs>
                     
-                    {/* Pulsing rings */}
-                    <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" />
-                    <div className="absolute inset-0 border-2 border-green-400 rounded-full animate-ping opacity-20" style={{ animationDelay: '1s' }} />
+                    {/* Animated connection lines */}
+                    <line
+                      x1="20%"
+                      y1="50%"
+                      x2="80%"
+                      y2="50%"
+                      stroke="url(#connectionGradient)"
+                      strokeWidth="3"
+                      strokeDasharray="8,4"
+                      className="animate-pulse"
+                    />
+                  </svg>
+                </div>
+
+                {/* Real-time Stats */}
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <div className="text-center p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                    <div className="text-lg font-bold text-blue-400">< 3 sec</div>
+                    <div className="text-xs text-muted-foreground">Message Delivery</div>
+                  </div>
+                  <div className="text-center p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                    <div className="text-lg font-bold text-green-400">24/7</div>
+                    <div className="text-xs text-muted-foreground">Network Uptime</div>
                   </div>
                 </div>
               </div>

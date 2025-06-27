@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Smartphone, Wifi, Radio, AlertTriangle } from 'lucide-react';
 
@@ -304,7 +305,8 @@ const GlobeVisualization = () => {
         </div>
       </div>
       
-      <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg z-10">
+      {/* Fixed Emergency Relay Button - Positioned Better */}
+      <div className="absolute top-16 right-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-sm">
           <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
           <div className="text-muted-foreground">Device → Mesh → Internet</div>

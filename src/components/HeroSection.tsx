@@ -1,28 +1,10 @@
 
-import { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 import GlobeVisualization from './GlobeVisualization';
 
 const HeroSection = () => {
-  const [currentText, setCurrentText] = useState('');
-  const fullText = "When networks fall, SpiderNet rises.";
-
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setCurrentText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
+    <section className="min-h-screen relative flex items-center justify-center overflow-hidden pt-24">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -39,11 +21,10 @@ const HeroSection = () => {
               <span className="text-sm font-medium">Emergency Network Active</span>
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            {/* Main Heading - Static, Smaller Text */}
+            <h1 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
               <span className="gradient-text glow-text-blue">
-                {currentText}
-                <span className="animate-ping">|</span>
+                When networks fall, SpiderNet rises.
               </span>
             </h1>
 
