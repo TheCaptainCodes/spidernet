@@ -99,7 +99,7 @@ const FeaturesSection = () => {
           
           <div className="grid md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold gradient-text mb-2">5km</div>
+              <div className="text-3xl font-bold gradient-text mb-2">5 Km</div>
               <div className="text-sm text-muted-foreground">LoRa Range</div>
             </div>
             <div>

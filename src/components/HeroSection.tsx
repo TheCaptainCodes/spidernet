@@ -22,7 +22,7 @@ const HeroSection = () => {
             </div>
 
             {/* Main Heading - Static, Smaller Text */}
-            <h1 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
               <span className="gradient-text glow-text-blue">
                 When networks fall, SpiderNet rises.
               </span>

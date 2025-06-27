@@ -177,7 +177,7 @@ const AboutSection = () => {
                 {/* Real-time Stats */}
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   <div className="text-center p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                    <div className="text-lg font-bold text-blue-400">< 3 sec</div>
+                    <div className="text-lg font-bold text-blue-400">3 sec</div>
                     <div className="text-xs text-muted-foreground">Message Delivery</div>
                   </div>
                   <div className="text-center p-3 rounded-lg bg-green-500/10 border border-green-500/20">

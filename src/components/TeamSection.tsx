@@ -2,7 +2,7 @@
 const TeamSection = () => {
   const team = [
     {
-      name: 'Fatin',
+      name: 'Md. Fatin Hasnat',
       role: 'Software & Network',
       avatar: '👨‍💻',
       description: 'Full-stack developer specializing in mesh networking protocols and mobile app development.',
@@ -11,7 +11,7 @@ const TeamSection = () => {
       linkedin: '#'
     },
     {
-      name: 'Hasan',
+      name: 'Mahmudul Hasan',
       role: 'Hardware Engineer',
       avatar: '⚡',
       description: 'Electronics engineer focused on low-power embedded systems and solar energy integration.',
@@ -20,7 +20,7 @@ const TeamSection = () => {
       linkedin: '#'
     },
     {
-      name: 'Sharika',
+      name: 'Sharika Taj Nur',
       role: 'Logistics & Operations',
       avatar: '📋',
       description: 'Project manager coordinating deployment strategies and community outreach programs.',
@@ -107,7 +107,7 @@ const TeamSection = () => {
           
           <div className="grid md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold gradient-text mb-2">2+</div>
+              <div className="text-3xl font-bold gradient-text mb-2">5+</div>
               <div className="text-sm text-muted-foreground">Years Development</div>
             </div>
             <div>
