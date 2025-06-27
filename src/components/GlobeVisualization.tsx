@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Smartphone, Wifi, Radio, AlertTriangle } from 'lucide-react';
 
@@ -142,9 +141,6 @@ const GlobeVisualization = () => {
           ctx.arc(x, y, 25 + pulse * 5, 0, Math.PI * 2);
           ctx.stroke();
           ctx.setLineDash([]);
-          
-          // Draw small house icon near each SpiderNet node
-          drawIcon(x - 15, y - 15, 'house', 12);
         }
       });
 
@@ -247,6 +243,11 @@ const GlobeVisualization = () => {
         // Draw device icon on top of the node
         drawIcon(x, y, node.type, nodeSize);
 
+        // Draw small house icon on top for SpiderNet nodes
+        // if (node.type === 'spidernet') {
+        //   drawIcon(x - 15, y - 15, 'house', 12);
+        // }
+
         // Special indicator for SOS origin with faster blinking
         if (index === 0) {
           const sosAlpha = (Math.sin(time * 0.015) + 1) / 2;
@@ -306,7 +307,7 @@ const GlobeVisualization = () => {
       </div>
       
       {/* Fixed Emergency Relay Button - Positioned Better */}
-      <div className="absolute top-16 right-4 glass px-3 py-2 rounded-lg z-10">
+      <div className="absolute top-4 right-4 glass px-3 py-2 rounded-lg z-10">
         <div className="text-sm">
           <div className="text-red-400 font-mono">EMERGENCY_RELAY</div>
           <div className="text-muted-foreground">Device → Mesh → Internet</div>
@@ -324,10 +325,10 @@ const GlobeVisualization = () => {
             <span>🕸️</span>
             <span>SpiderNet Node</span>
           </div>
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <span>🏠</span>
             <span>House/Network</span>
-          </div>
+          </div> */}
           <div className="flex items-center space-x-2">
             <span>🚨</span>
             <span>Emergency Services</span>
