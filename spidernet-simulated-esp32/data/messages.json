@@ -1,0 +1,37 @@
+[
+  {
+    "id": "msg_1a8frg",
+    "helpType": "custom",
+    "helpMessage": "leg is broken",
+    "location": {
+      "lat": 40.7128,
+      "lng": -74.006
+    },
+    "nodeId": "node_home_001",
+    "timestamp": "2025-07-02T12:50:10.707Z"
+  },
+  {
+    "id": "msg_9u8x6q",
+    "helpType": "home",
+    "helpMessage": "leg is broken",
+    "location": {
+      "lat": 40.7128,
+      "lng": -74.006
+    },
+    "nodeId": "node_home_001",
+    "timestamp": "2025-07-02T12:54:57.767Z"
+  },
+  {
+    "id": "msg_sksuij",
+    "content": "h\n",
+    "timestamp": 1751461152341,
+    "nodeId": "node_home_001",
+    "nodeName": "Alex's Home Node",
+    "type": "public",
+    "hops": 1,
+    "isDelivered": true,
+    "senderId": "user_001",
+    "senderName": "Alex Rivera",
+    "encrypted": false
+  }
+]

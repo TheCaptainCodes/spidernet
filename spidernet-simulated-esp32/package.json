@@ -1,0 +1,16 @@
+{
+  "name": "spidernet-simulated-esp32",
+  "version": "1.0.0",
+  "description": "Simulated ESP32 backend server for help requests (AP mode)",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+} 
