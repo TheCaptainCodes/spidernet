@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "SpiderNet",
+    "slug": "spidernet-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#111827"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1eff1cc9-2eed-46c6-84ff-ff525c15c31f"
+      }
+    },
+    "android": {
+      "package": "com.spidernet.spidernet"
+    }
+  }
+}
